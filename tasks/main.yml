@@ -1,4 +1,7 @@
 ---
+- include_tasks: network.yml
+  when: watchtower_enabled == "true"
+
 - include_tasks: start.yml
   when: watchtower_enabled == "true"
 

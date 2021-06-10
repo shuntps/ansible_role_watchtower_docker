@@ -24,5 +24,9 @@ watchtower_email_user: "{{ docker_email }}"
 watchtower_email_password: "{{ docker_email_password }}"
 watchtower_email_delay: "2"
 
+# Network
+watchtower_available_externally: "false"
+watchtower_network_mode: "{{ docker_internal_network }}"
+
 # Command
 watchtower_command: --debug --cleanup --schedule "0 30 2 * * *"

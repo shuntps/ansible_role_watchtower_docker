@@ -18,4 +18,10 @@
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - name: "{{ watchtower_network_mode }}"
+    purge_networks: "true"
+    networks_cli_compatible: "true"
     command: "{{ watchtower_command }}"
+    labels:
+      traefik.enable: "{{ watchtower_available_externally }}"
