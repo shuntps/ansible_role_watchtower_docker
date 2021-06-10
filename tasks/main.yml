@@ -1,0 +1,6 @@
+---
+- include_tasks: start.yml
+  when: watchtower_enabled == "true"
+
+- include_tasks: stop.yml
+  when: watchtower_enabled == "false"

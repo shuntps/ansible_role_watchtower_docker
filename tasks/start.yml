@@ -1,0 +1,21 @@
+---
+- name: Start "{{ watchtower_name }}" container
+  community.docker.docker_container:
+    name: "{{ watchtower_name }}"
+    image: "containrrr/watchtower:{{ watchtower_version }}"
+    restart_policy: "{{ watchtower_restart_policy }}"
+    recreate: "{{ watchtower_recreate }}"
+    pull: "true"
+    env:
+      WATCHTOWER_NOTIFICATIONS: email
+      WATCHTOWER_NOTIFICATION_EMAIL_FROM: "{{ watchtower_email_from }}"
+      WATCHTOWER_NOTIFICATION_EMAIL_TO: "{{ watchtower_email_to }}"
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER: "{{ watchtower_email_server }}"
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT: "{{ watchtower_email_port }}"
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: "{{ watchtower_email_user }}"
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: "{{ watchtower_email_password }}"
+      WATCHTOWER_NOTIFICATION_EMAIL_DELAY: "{{ watchtower_email_delay }}"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    command: "{{ watchtower_command }}"
